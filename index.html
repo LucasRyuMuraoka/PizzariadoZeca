@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizzaria do Zeca</title>
+
+    <link rel="icon" href="/assets/images/icon.png" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+      body {
+        font-family: Inter;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #f8f9fa;
+      }
+
+      .header {
+        background-color: #d6c79c;
+        color: #b01b1e;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header h1 {
+        margin: 0;
+      }
+
+      .links a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+      }
+
+      .links a:hover {
+        text-decoration: underline;
+      }
+
+      .containerPrincipal {
+        flex: 1;
+        padding: 20px;
+        font-size: large;
+      }
+
+      .footer {
+        background-color: #d6c79c;
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body
+    onload="defaultStatus='Bem vindo!'; alert('Bem vindo a Pizzaria do Zeca !')"
+  >
+    <header class="header">
+      <h1>Pizzaria do Zeca</h1>
+
+      <div class="links">
+        <a href="/sabores.html">Sabores</a>
+        <a href="/calcular.html">Calcular</a>
+        <a href="/maisvendidas.html">Mais Vendidas</a>
+      </div>
+    </header>
+
+    <main class="containerPrincipal">
+      <h2>Bem vindo a Pizzaria do Zeca</h2>
+      <p id="data"></p>
+      <p>É uma hora perfeita pra uma pizza !</p>
+
+      <script>
+        function obterData() {
+          const data = new Date();
+          return data.toLocaleString("pt-BR");
+        }
+
+        const frase = "Olha as horas " + obterData();
+        const mensagem = frase;
+
+        document.getElementById("data").textContent = mensagem;
+      </script>
+    </main>
+
+    <footer class="footer">
+      <p>Sobre</p>
+      <p>Nomes: Lucas Ryu Muraoka e José Daniel da Silva de Queiroz</p>
+      <p>Todos os direitos reservados &copy; 2024 Pizzaria do Zeca</p>
+    </footer>
+  </body>
+</html>

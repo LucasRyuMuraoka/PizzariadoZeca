@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizzaria do Zeca</title>
+
+    <link rel="icon" href="/assets/images/icon.png" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+      body {
+        font-family: Inter;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #f8f9fa;
+        overflow-x: hidden;
+      }
+
+      .header {
+        background-color: #d6c79c;
+        color: #b01b1e;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header h1 {
+        margin: 0;
+        color: #b01b1e;
+        text-decoration: none;
+      }
+
+      .header a {
+        text-decoration: none;
+      }
+
+      .links a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+      }
+
+      .links a:hover {
+        text-decoration: underline;
+      }
+
+      .containerCalcular {
+        flex: 1;
+        width: 100%;
+        max-height: 80%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        overflow-x: auto;
+      }
+      .item {
+        padding: 10px;
+        margin: 10px;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .footer {
+        background-color: #d6c79c;
+        color: #000000;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="/index.html"><h1>Pizzaria do Zeca</h1></a>
+
+      <div class="links">
+        <a href="/sabores.html">Sabores</a>
+        <a href="/calcular.html">Calcular</a>
+        <a href="/maisvendidas.html">Mais Vendidas</a>
+      </div>
+    </header>
+
+    <main class="containerCalcular">
+      <h2>Comprar Pizzas:</h2>
+
+      <br />
+      <form id="pedidoForm">
+        <label for="sabor">Sabor:</label>
+        <select id="sabor">
+          <option value="Margherita">Margherita</option>
+          <option value="Calabresa">Calabresa</option>
+          <option value="Portuguesa">Portuguesa</option>
+          <option value="Mushroom">Mushroom</option>
+          <option value="Pepperoni">Pepperoni</option>
+        </select>
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" value="1" min="1" />
+        <button type="submit">Adicionar ao Pedido</button>
+      </form>
+      <br /><br />
+
+      <div id="resultado"></div>
+
+      <script>
+        const menuPizzas = {
+          Margherita: 15,
+          Calabresa: 20,
+          Portuguesa: 18,
+          Mushroom: 22,
+          Pepperoni: 25,
+        };
+
+        let pedidos = [];
+
+        function comprarPizzas(sabores) {
+          let total = 0;
+          let detalhes = "";
+
+          sabores.forEach((sabor) => {
+            const { nome, quantidade } = sabor;
+            const preco = menuPizzas[nome];
+            if (preco) {
+              const subtotal = preco * quantidade;
+              total += subtotal;
+              detalhes += `${quantidade} x ${nome} = R$ ${subtotal.toFixed(
+                2
+              )}<br>`;
+            }
+          });
+
+          detalhes += `<strong>Total: R$ ${total.toFixed(2)}</strong>`;
+          document.getElementById("resultado").innerHTML = detalhes;
+        }
+
+        document
+          .getElementById("pedidoForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const sabor = document.getElementById("sabor").value;
+            const quantidade = parseInt(
+              document.getElementById("quantidade").value
+            );
+
+            pedidos.push({ nome: sabor, quantidade: quantidade });
+            comprarPizzas(pedidos);
+
+            document.getElementById("pedidoForm").reset();
+          });
+      </script>
+    </main>
+
+    <footer class="footer">
+      <p>Sobre</p>
+      <p>Nomes: Lucas Ryu Muraoka e José Daniel da Silva de Queiroz</p>
+      <p>Todos os direitos reservados &copy; 2024 Pizzaria do Zeca</p>
+    </footer>
+  </body>
+</html>
