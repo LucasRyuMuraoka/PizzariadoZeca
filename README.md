@@ -1,2 +1,2 @@
 # PizzariadoZeca
-Projeto de uma Pizzaria feito com HTML e CSS
+Projeto de uma Pizzaria feito com HTML, CSS e JavaScript
